@@ -1,0 +1,143 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{fullpage}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{IEEEtrantools} 
+\usepackage{bbm}
+\usepackage{lineno}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{lipsum}
+\usepackage{etoolbox} %% <- for \pretocmd and \apptocmd
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{natbib}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cM}{\mathcal {M}}
+\newcommand{\tadashi}[1]{\textcolor{blue}{\textbf{[Tadashi: }#1\textbf{]}}}
+\newcommand{\shuai}[1]{\textcolor{blue}{\textbf{[Shuai: }#1\textbf{]}}}
+\newcommand{\suminf}{\sum_{n=1}^\infty}
+\newcommand{\dist}{\text{dist}}
+
+\title{Math 516: Linear Analysis}
+\author{Shuai Liu}
+\makeatletter %% <- make @ usable in macro names
+\newcommand*\linenomathpatch{\@ifstar{\linenomathpatch@AMS}{\linenomathpatch@}}
+\newcommand*\linenomathpatch@[1]{
+  \expandafter\pretocmd\csname #1\endcsname {\linenomathWithnumbers}{}{}
+  \expandafter\pretocmd\csname #1*\endcsname{\linenomathWithnumbers}{}{}
+  \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}
+  \expandafter\apptocmd\csname end#1*\endcsname{\endlinenomath}{}{}
+}
+\newcommand*\linenomathpatch@AMS[1]{
+  \expandafter\pretocmd\csname #1\endcsname {\linenomathWithnumbersAMS}{}{}
+  \expandafter\pretocmd\csname #1*\endcsname{\linenomathWithnumbersAMS}{}{}
+  \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}
+  \expandafter\apptocmd\csname end#1*\endcsname{\endlinenomath}{}{}
+}
+\let\linenomathWithnumbersAMS\linenomathWithnumbers
+\patchcmd\linenomathWithnumbersAMS{\advance\postdisplaypenalty\linenopenalty}{}{}{}
+\makeatother %% revert @
+\linenomathpatch{IEEEeqnarray}
+\linenomathpatch{equation}
+\linenomathpatch*{gather}
+\linenomathpatch*{multline}
+\linenomathpatch*{align}
+\linenomathpatch*{alignat}
+\linenomathpatch*{flalign}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{property}[theorem]{Property}
+\newtheorem{claim}{CLAIM}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assumption}{Assumption}
+\newtheorem{exercise}[theorem]{Exercise}
+\begin{document}
+\maketitle
+\section{Quotient Spaces}
+\begin{definition}
+    Let $X$ be a vector space and $Y$ be a subspace. Define $\hat x$ be $\{z: z=x+y, y\in Y\}$. Then $X/Y = \{\hat x: x\in X\}$ is a vector space. 
+    $Q:X \to X/Y$ is a canonical quotient map. Suppose in addition that $X$ is a normed space and $Y$ is a closed subspace, then we can make $X/Y$ into a normed space:
+    \begin{equation}
+        \|\hat x\| = \inf_{z \in \hat x}{\|z\|} = \inf_{x}{\|x-y\|}=\text{dist}(x,Y)
+    \end{equation}
+\end{definition}
+$X/Y$ is indeed a vector space. If $\|\hat x\|=0$ then $\text{dist}(x,Y)=0$ and $Y$ is closed implies $x\in Y$. Therefore $\hat x=Y$ which is the 0 element in quotient space.
+$\forall a,b \in X$, $\hat a+\hat b = Qa+Qb=Q(a+b)=\{z:z=a+b+y, y\in Y\}$. For all $\epsilon >0 $, there exists $y_0, y_1$ such that $\|a-y_0\|\le \|\hat a\|+\epsilon/2$ and
+$\|b-y_0\|\le \|\hat b\|+\epsilon/2$. Then
+\begin{equation}
+    \|\hat a +\hat b\| = \inf_{y\in Y}\|a+b-y\|\le \|a+b-(y_0+y_1)\|\le \|a-y_0\| + \|b-y_1\|\le \|\hat a\|+\epsilon/2 + \|\hat b\|+\epsilon/2\le \|\hat a\|+\|\hat b\|+\epsilon
+\end{equation}
+Since $\epsilon$ can be arbitrarily small, we have $ \|\hat a +\hat b\|\le \|\hat a\|+\|\hat b\|$.
+$\|\alpha \hat a\| = |\alpha|\|\hat a\|$ is trivial.
+\begin{exercise}\label{ex:Q}
+    $\|Q\|=1, Q(B_x^\circ)=B_Y^\circ$
+\end{exercise} 
+\begin{theorem}
+    If $X$ is a Banach space and $Y$ is a closed subspace of $X$. Then $X/Y$ is a Banach space. 
+\end{theorem}  
+\begin{proof}
+    It is sufficient to prove that all absolutely convergent series are all convergent. Let $\sum_{n=1}^\infty \hat x_n$ be an absolutely convergent subsequence,
+    i.e. $\sum_{n=1}^\infty \|\hat x_n\|<\infty$. For all $\hat x_n$, pick a representative $z_n$ such that $\|z_n\|\le 2\|\hat x_n\|$ and note that $Qz_n = \hat x_n$.
+    Then $\sum_{n=1}^\infty \|z_n\|\le 2\sum_{n=1}^\infty \|x_n\|<\infty$. Since $X$ is Banach, $z:=\suminf z_n$ is a convergent sequence. By exercise \ref{ex:Q}, we know that $Q$ is a bounded operator therefore continuous.
+    Then $\suminf \hat x_n = \suminf Qz_n=Qz$ converges
+\end{proof}
+\begin{theorem}[Almost Perpendicular Lemma/Reisz Lemma]
+    Let $X$ be a normed space and $Y$ be a proper subspace of $X$, then for all $\epsilon>0$, there exists $x\in S_x$ such that $dist(x,Y)\ge 1-\epsilon$
+\end{theorem}
+\begin{proof}
+    Let $\epsilon>0$. Pick a non-zero element $\hat z \in X/Y$ and rescale it such that $1-\epsilon\le\|\hat z\|<1$. Then pick $z \in \hat z$ such that $\|z\|\le 1$. 
+    Let $x = \frac{z}{\|z\|}$ such that $x\in S_X$. Then $\hat x=\{a=y+\frac{z}{\|z\|}:y\in Y\}=\frac{\hat z}{\|z\|}$. By definition, $\dist(x,Y)=\|\hat x\|=\|\frac{\hat z}{\|z\|}\|\in[1-\epsilon, 1)$
+\end{proof}
+\begin{example}
+    Consider $X=l_p$ and a sequence $\{e_i\}$. For $i \neq j$, $\|e_i-e_j\|\ge 1$ which means no subsequence of $\{e_i\}$ converges, then $B_X$ is not compact.
+\end{example}
+\begin{example}
+    X is a normed space. $B_X$ is compact iff $X$ is finite dimensional.
+    \begin{proof}
+        Assume $X$ is finite dimensional. Then $X \simeq l_2^N$ where $N=dim(X)$. $\simeq$ stands for isomorphic, which is surjective isomorphism, in normed space, it means
+        the norm of two spaces are equivalent. Then since the topology in metric spaces are induced by metrics, the topology are the same. Then the unit ball in $l_2^N$ is 
+        bounded and closed, which means it is compact. Since the topologies induced are the same, the unit ball is also compact in $X$.\\
+        Assume $X$ is infinite dimensional and we are to prove $B_X$ is not compact. Pick a point on $S_x$, then $span\{x_1\}$ is a closed proper subspace of $X$. By Reisz's lemma, 
+        there exists $x_2$ on $S_X$ such that $\|x_1-x_2\|\ge 1/2$. $span\{x_1, x_2\}$ is a closed proper subspace of $X$, apply the lemma again, there exists $x_3$ on $S_X$
+        such that $\|x_1-x_3\|\ge 1/2$, $\|x_2 - x_3\|\ge 1/2$. Proceed this process inductively, then $\{x_n\}$ has no convergent subsequence, then $B_X$ is not compact.
+    \end{proof}
+\end{example}
+\section{Separable Space}
+\begin{definition}
+A space $X$ is separable if it contains a countable dense subset. A subset $E$ of $X$ is dense if for all open set $O\in X$, $O \cap E\neq \emptyset$.
+\end{definition}
+$c_0$ is separable. Let $A=\{(q_1,q_2,...,q_m,0,...): q_i \in \Q\}$. $A$ is countable. Left to show $A$ is dense. Pick $x=(x_1,...,x_n,...)\in c_0$ and $\epsilon>0$, we have
+$x_n\to 0$. Then there exists $n_0\in \N$ such that $|x_i|<\epsilon/2$ for all $i\ge n_0$. Let $y=(x_1,..,x_{n_0},0,0,...)$. Then $\|x-y\|_\infty < \epsilon/2$. Let $z=\{q_1,...,q_{n_0}\}$ where 
+$|x_i-q_i|<\epsilon/2$. Then $\|x-z\|\le\|x-y\|+\|y-z\|<\epsilon$,i.e., $z\in B_\epsilon(x)$ and also $z\in A$ by construction. Therefore $A$ is dense.
+
+$c_0$ is isomorphic to $c$ so $c$ is also separable.
+
+$l_\infty$ is not separable. Let $\alpha$ be a subset of $\N$ and $\mathbb I_\alpha$ be the indicator function. Then $\{\mathbb I_\alpha: \alpha\subset \N\}$ is an 
+uncountable set. If there exists an $A\subset l_\infty$ be countable and dense. Then for each $\mathbb I_\alpha$, there exists an $a_\alpha$ such that 
+$\|a_\alpha-\mathbb I_\alpha\|<1/3$. Then for $\alpha\neq \beta$, we have
+\begin{align*}
+    1=\|I_\alpha-I_\beta\|&=\|I_\alpha-a_\alpha+a_\beta - I_\beta+a_\alpha-a_\beta\|\\
+    &\le \|I_\alpha-a_\alpha\| + \|a_\beta - I_\beta\|+\|a_\alpha-a_\beta\|\\
+    &\le 2/3 + \|a_\alpha-a_\beta\|
+\end{align*}
+So $\|a_\alpha-a_\beta\|\neq 0 \Rightarrow a_\alpha\neq a_\beta$. Then $\{a_\alpha: \alpha \subset N\}$ is an uncountable subset of $A$.
+\end{document}
