@@ -140,4 +140,31 @@ $\|a_\alpha-\mathbb I_\alpha\|<1/3$. Then for $\alpha\neq \beta$, we have
     &\le 2/3 + \|a_\alpha-a_\beta\|
 \end{align*}
 So $\|a_\alpha-a_\beta\|\neq 0 \Rightarrow a_\alpha\neq a_\beta$. Then $\{a_\alpha: \alpha \subset N\}$ is an uncountable subset of $A$.
+
+$L_\infty([0,1])$ is also not separable. We can map every point in $l_\infty$ into $L_\infty([0,1])$. That is define $f_n = \mathbb I_{[\frac{1}{2^{n}}, \frac{1}{2^{n-1}}]}$. 
+We then define $T:e_n\to f_n$, i.e., $\forall x \in l_\infty,(Tx)(s)=x_n$ for $s\in [\frac{1}{2^{n}}, \frac{1}{2^{n-1}}]$. Then the uncoutable equidistant set in $l_\infty$ 
+is mapped to $L_\infty([0,1])$. Then if a set is dense, then it should be uncountable. $l_1\subset l_2\subset \subset...\subset c\subset l_\infty$ and all of them are 
+separable except $l_\infty$.
+
+$c([0,1])$ is separable. Let $A=\{\text{all peice-wise linear functions with rational nodes}\}$. For all $f \in c([0,1])$, $f$ is uniformly continuous. For all $\epsilon>0$, 
+there exists $n$ sufficiently large such that all intervals taking the form $[\frac{i}{n}, \frac{i+1}{n}]$ for $i\le n$, the variation of $f$ is less than $\epsilon$.
+Then there exists $h\in A$ such that for all $i\in [n]$ and $t\in [\frac{i}{n}, \frac{i+1}{n}]$, $|f(t)-h(t)|<\epsilon$. Then $||f-h||<\epsilon$ and $A$ is dense.
+\begin{lemma}
+    c([0,1]) is dense in $L_p([0,1])$. 
+\end{lemma}
+\begin{proof}
+    WLOG, we assume $f\ge 0$, otherwise we can replace $f=f^+-f^-$. For all $f\ge 0\in c([0,1])$, let $g_n$ be $f\land n$, then $g_n\to f$.
+    Note that $|f-g_n|^p\le 2^p|f|^p$ therefore in $L_p([0,1])$. By Dominated Convergence Theorem, $\lim_{n\to \infty}\int |f-g_n|^p = \int \lim_{n\to \infty}|f-g_n|^p=0$. 
+    Hence for all $\epsilon>0$, there exists $M\in \R$ such that $\|f-g\|=\int |f-g|<\epsilon$. By Lusin's theorem, which states that every finite measurable function is an almost 
+    continuous function, i.e., there exists $h \in c([0,1])$ such that $g$ agrees with $h$ on a set $A$ with $\mu(A)<\frac{\epsilon}{M}$. WLOG, we assume $h\le M$ otherwise we 
+    pay a price of $\epsilon$ as before to truncate it in. Then $\|g-h\|=\int |g-h|\le M\mu(A)=\epsilon$. Finally $\|f-h\|<\|f-g\|+\|g-h\|<2\epsilon$ and $c([0,1])$ is thus dense.
+\end{proof}
+\begin{theorem}
+    For $1\le p <\infty, L_p([0,1])$ is separable.
+\end{theorem}
+\begin{proof}
+    Since $c([0,1])$ is separable in $\|\cdot\|_\infty$ we pick a countable dense set $A$. We claim that $A$ is still a dense set in $L_p([0,1])$ in $\|\cdot\|_p$. 
+    Fix $\epsilon>0$. For all $f \in L_p([0,1])$, by previous lemma, there exists  $g \in c([0,1])$ such that $\|f-g\|<\epsilon$. Then we find $h$ in $A$ such that $\|g-h\|_\infty<\epsilon$.
+    Then $\|f-g\|<\|f-g\|+\|g-h\|<\|f-g\|+\|g-h\|_\infty<2\epsilon$. The last inequality is due to $\|f\|_p<\|f\|_\infty$ in $L_p([0,1])$.
+\end{proof}
 \end{document}
