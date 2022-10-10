@@ -167,4 +167,23 @@ Then there exists $h\in A$ such that for all $i\in [n]$ and $t\in [\frac{i}{n}, 
     Fix $\epsilon>0$. For all $f \in L_p([0,1])$, by previous lemma, there exists  $g \in c([0,1])$ such that $\|f-g\|<\epsilon$. Then we find $h$ in $A$ such that $\|g-h\|_\infty<\epsilon$.
     Then $\|f-g\|<\|f-g\|+\|g-h\|<\|f-g\|+\|g-h\|_\infty<2\epsilon$. The last inequality is due to $\|f\|_p<\|f\|_\infty$ in $L_p([0,1])$.
 \end{proof}
+\begin{proposition}[exercise]
+    $X$ is separable iff $S_X$ is separable
+\end{proposition}
+\begin{proof}
+    Assume $X$ is separable. Find $A$ to be the dense and countable subset. Then $B=\{x=\frac{y}{\|y\|}:y\in A\}$ is dense in $S_X$. For all $\tilde x\in S_X$, 
+    there exists $x\in X$ such that $\tilde x=\frac{x}{\|x\|}$. For $x$ and $\epsilon'>0$, $\exists y\in A$ where $\|x-y\|<\epsilon'$.
+    Note that in order for all $\epsilon>0$, we have
+    \begin{align*}
+        \|\frac{x}{\|x\|}-\frac{y}{\|y\|}\|&= \frac{1}{\|x\|}\left\|x-\frac{\|x\|}{\|y\|}y\right\|\\
+        &= \frac{1}{\|x\|}\|x-y+\frac{\|y\|-\|x\|}{\|y\|}y\|<\epsilon\\
+        \|{x}-{y}\|&<\|x\|\epsilon+\big |\|y\|-\|x\|\big |
+    \end{align*}
+    Then by setting $\epsilon'=\|x\|\epsilon+\big |\|y\|-\|x\|\big |$ we show that A is dense.
+
+    Assume $S_X$ is separable. Find $B$ to be the dense and countable subset. Then $A=\{qx:q\in \Q, x\in B\}$ is dense in $X$. Fix $\epsilon>0$. For all $\tilde x \in X$, $x=\frac{\tilde x}{\|\tilde x\|}\in S_X$.
+    Then by definition of $B$, there exists $y\in B$ such that for all $\epsilon'>0$ $\|x-y\|<\epsilon'$. There exists a convergent sequence $\{q_n\}$ in $\Q$ such that $q_n\to \|\tilde x\|$.
+    Hence there exists $n_0\in \N$ s.t. for all $n\ge n_0$, $\|x\cdot \|\tilde x\| - yq_n\| - \|x\cdot \|\tilde x\| - y\|\tilde x\|\|<\epsilon/2$. By setting $\epsilon'=\frac{\epsilon}{2\|\tilde x\|}$, 
+    we obtain $\|x\cdot \|\tilde x\| - y\|\tilde x\|\|<\epsilon/2$ therefore $|x\cdot \|\tilde x\| - yq_n\|=\|x-yq_n\|<\epsilon$ and $A$ is thus dense.
+\end{proof}
 \end{document}

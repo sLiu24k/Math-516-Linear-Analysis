@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1665370644 "/Users/shuailiu/Documents/Semesters/22Fall/MATH516/CourseNotes/math516.tex" "math516.pdf" "math516" 1665370645
-  "/Users/shuailiu/Documents/Semesters/22Fall/MATH516/CourseNotes/math516.tex" 1665370644 10877 34b17550eaba7bd5a338601fc7f37af7 ""
+["pdflatex"] 1665375030 "/Users/shuailiu/Documents/Semesters/22Fall/MATH516/CourseNotes/math516.tex" "math516.pdf" "math516" 1665375031
+  "/Users/shuailiu/Documents/Semesters/22Fall/MATH516/CourseNotes/math516.tex" 1665375030 12468 65db997e4f96328c3a360cc2d8cb2143 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -117,9 +117,9 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1665262262 2826442 c92adee0a88fd657b74026a7a18e181a ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "math516.aux" 1665370645 953 05dd0411ea8b428faa20f2e9a09769ba "pdflatex"
-  "math516.out" 1665370645 242 f893a5aa4b36f4a56291d6d8d1d80617 "pdflatex"
-  "math516.tex" 1665370644 10877 34b17550eaba7bd5a338601fc7f37af7 ""
+  "math516.aux" 1665375031 953 05dd0411ea8b428faa20f2e9a09769ba "pdflatex"
+  "math516.out" 1665375031 242 f893a5aa4b36f4a56291d6d8d1d80617 "pdflatex"
+  "math516.tex" 1665375030 12468 65db997e4f96328c3a360cc2d8cb2143 ""
   (generated)
   "math516.aux"
   "math516.log"
